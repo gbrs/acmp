@@ -9,12 +9,13 @@ def add_weight(weight, *makeweights):
     print(weight, makeweights)
     for makeweight in makeweights:
         if weight + makeweight > w:
-            pass
+            break
         if weight + makeweight == w:
             global cnt
             cnt += 1
             print(cnt)
         if weight + makeweight < w:
+            print(makeweight, end=' ')
             add_weight(weight + makeweight, *makeweights)
             add_weight(weight + makeweight, *makeweights[1:])
 
