@@ -5,26 +5,29 @@
 '''
 
 
-def add_weight(weight, *makeweights):
+def add_weight(weight, space, *makeweights):
     print(weight, makeweights)
     for makeweight in makeweights:
         if weight + makeweight > w:
+            print(' ' * space, f'+{makeweight}')
+            print(' ' * space, 'xxx')
             break
         if weight + makeweight == w:
             global cnt
             cnt += 1
-            print(cnt)
+            print(' ' * space, f'+{makeweight}', cnt, '!!!!!')
         if weight + makeweight < w:
-            print(makeweight, end=' ')
-            add_weight(weight + makeweight, *makeweights)
-            add_weight(weight + makeweight, *makeweights[1:])
+            print(' ' * space, f'+{makeweight}', end=' ')
+            space += 8
+            add_weight(weight + makeweight, space, *makeweights)
+            add_weight(weight + makeweight, space, *makeweights[1:])
 
 
 with open('INPUT.TXT', encoding='utf-8') as f:
     x, y, z, w = map(int, f.read().strip().split())
 
-cnt = 0
-add_weight(0, x, y, z)
+cnt = space = 0
+add_weight(0, space, x, y, z)
 print(cnt)
 
 with open('OUTPUT.TXT', 'w', encoding='utf-8') as f:
