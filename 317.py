@@ -6,21 +6,21 @@
 
 
 def add_weight(weight, space, *makeweights):
-    print(weight, makeweights)
-    for makeweight in makeweights:
-        if weight + makeweight > w:
-            print(' ' * space, f'+{makeweight}')
-            print(' ' * space, 'xxx')
-            break
+    # print(weight, makeweights)
+    for i, makeweight in enumerate(makeweights):
+        space += 8
+        # print(' ' * space, f'+{makeweight}')
+        # if weight + makeweight > w:
+            # print(' ' * space, weight + makeweight)
+            # print(' ' * space, 'xxx')
         if weight + makeweight == w:
             global cnt
             cnt += 1
-            print(' ' * space, f'+{makeweight}', cnt, '!!!!!')
+            # print(' ' * space, cnt, '!!!!!')
+            continue
         if weight + makeweight < w:
-            print(' ' * space, f'+{makeweight}', end=' ')
-            space += 8
-            add_weight(weight + makeweight, space, *makeweights)
-            add_weight(weight + makeweight, space, *makeweights[1:])
+            # print(' ' * space, end=' ')
+            add_weight(weight + makeweight, space, *makeweights[i:])
 
 
 with open('INPUT.TXT', encoding='utf-8') as f:
@@ -28,7 +28,7 @@ with open('INPUT.TXT', encoding='utf-8') as f:
 
 cnt = space = 0
 add_weight(0, space, x, y, z)
-print(cnt)
+# print(cnt)
 
 with open('OUTPUT.TXT', 'w', encoding='utf-8') as f:
     f.write(str(cnt))
