@@ -5,10 +5,13 @@
 '''
 
 
-def add_weight(weight, space, *makeweights):
+import sys
+sys.setrecursionlimit(10000)
+
+def add_weight(weight, *makeweights):
     # print(weight, makeweights)
     for i, makeweight in enumerate(makeweights):
-        space += 8
+        # space += 8
         # print(' ' * space, f'+{makeweight}')
         # if weight + makeweight > w:
             # print(' ' * space, weight + makeweight)
@@ -20,14 +23,15 @@ def add_weight(weight, space, *makeweights):
             continue
         if weight + makeweight < w:
             # print(' ' * space, end=' ')
-            add_weight(weight + makeweight, space, *makeweights[i:])
+            add_weight(weight + makeweight, *makeweights[i:])
 
 
 with open('INPUT.TXT', encoding='utf-8') as f:
     x, y, z, w = map(int, f.read().strip().split())
 
-cnt = space = 0
-add_weight(0, space, x, y, z)
+# space = 0
+cnt = 0
+add_weight(0, x, y, z)
 # print(cnt)
 
 with open('OUTPUT.TXT', 'w', encoding='utf-8') as f:
